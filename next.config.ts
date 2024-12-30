@@ -4,14 +4,7 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
-    });
-    return config
-  },
-  reactStrictMode: true,
+  reactStrictMode: process.env.NODE_ENV === 'production',
 };
 
 export default nextConfig;
