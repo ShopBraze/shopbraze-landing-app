@@ -1,5 +1,4 @@
 import App from './app'
-import "../styles/globals.css"
 
 type Props = {}
 
