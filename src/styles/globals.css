@@ -24,7 +24,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Inter", sans-serif;
+  font-family: "Quick Sand";
 }
 
 /* Load variable Inter font file : All font weights and styles */
@@ -42,4 +42,26 @@ body {
   font-style: italic;
   font-weight: 400;
   font-display: swap;
+}
+
+/* --------------------------- Quick Sand Font ---------------------------- */
+@font-face {
+  font-family: "Quick Sand";
+  src: url("../assets/fonts/quick-sand/quick-sand-variable.ttf");
+  font-style: italic;
+  /* font-weight: 100 900; */
+  font-display: swap;
+}
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
