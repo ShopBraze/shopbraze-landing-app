@@ -1,4 +1,3 @@
-import PricingBoxIcon from "assets/icons/pricing-box.svg"
 import SuccessCheckIcon from "assets/icons/success-check-icon.svg"
 import Button from "common-components/button/button"
 import Image from "next/image"
