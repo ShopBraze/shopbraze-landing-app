@@ -1,4 +1,4 @@
-import App from './app'
+import App from './_app'
 
 type Props = {}
 
