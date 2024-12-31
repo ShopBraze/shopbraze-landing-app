@@ -1,7 +1,7 @@
 export default {
   title: "Shopbraze - Elevate Your E-commerce Journey",
   description:
-    "Enhance your child's productivity with our courses in Art, Music & Communication",
+    "The ultimate platform to enhance your e-commerce profitability and success.",
   openGraph: {
     type: "website",
     locale: "en_IN",
@@ -9,11 +9,11 @@ export default {
     site_name: "Shop Braze",
     images: [
       {
-        url: "https://res.cloudinary.com/dwr2iupak/image/upload/v1735623919/Logo_nmsxcx.svg",
+        url: "https://res.cloudinary.com/dwr2iupak/image/upload/v1735625906/Redmi_Note_11_Pro_1_xaxkew.png",
         width: 800,
         height: 600,
-        alt: "Og Image Alt",
-        type: "image/jpeg",
+        alt: "Enhance your profitability",
+        // type: "image/png",
       },
     ],
   },
