@@ -6,8 +6,16 @@ type BookAFreeDemoProps = {
 }
 
 const BookAFreeDemo = ({ buttonText = "Book a Free Demo", className }: BookAFreeDemoProps) => {
+  const handleBookClick = () => {
+    window.open('https://calendly.com/shopbraze/30min')
+  }
   return (
-    <Button variant="primary" className={`font-semibold text-xs md:text-sm text-[#fff] !rounded-full ${className}`}>{buttonText}</Button>
+    <Button variant="primary"
+      className={`font-semibold text-xs md:text-sm text-[#fff] !rounded-full ${className}`}
+      onClick={handleBookClick}
+    >
+      {buttonText}
+    </Button>
   )
 }
 

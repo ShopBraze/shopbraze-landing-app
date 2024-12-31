@@ -1,8 +1,8 @@
 import Layout from "global-components/layout/layout"
 import Homepage from "views/homepage/homepage"
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import TopBarProgress from "react-topbar-progress-indicator";
+// import { useRouter } from "next/router";
+// import { useEffect, useState } from "react";
+// import TopBarProgress from "react-topbar-progress-indicator";
 import "../styles/globals.css"
 const App = () => {
 
