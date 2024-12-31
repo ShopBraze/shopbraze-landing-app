@@ -32,7 +32,7 @@ const MobileNavbar = () => {
         </div>
       </div>
       {
-        <div className={`fixed top-[90px] bottom-0 overflow-hidden right-0 bg-[#fff] w-[250px] border border-gray-200 transform transition-transform duration-300 ease-in-out ${openSidebar ? "translate-x-0" : "translate-x-full"
+        <div className={`fixed top-0 bottom-0 overflow-hidden right-0 bg-[#fff] w-[250px] border border-gray-200 transform transition-transform duration-300 ease-in-out ${openSidebar ? "translate-x-0" : "translate-x-full"
           }`}>
           <div className="w-full flex bg-primary-700 justify-end p-3">
             <Image src={CrossIcon} alt="cross.svg" onClick={handleToggleSidebar} className="cursor-pointer" />
