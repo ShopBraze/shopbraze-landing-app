@@ -35,7 +35,7 @@ const EverythingYouNeedToStart = () => {
           <p className="text-base md:text-xl md:leading-[35px] font-bold text-gray-1000 w-[70%]">
             Everything You Need To Start And Succeed
           </p>
-          <BookAFreeDemo />
+          {/* <BookAFreeDemo /> */}
         </div>
         <p className="text-sm md:text-xl font-semibold text-gray-700">
           The All-in-One Platform to Create, Manage, and Grow Your Online Store
