@@ -1,44 +1,26 @@
-
-import BannerDesktopImage from "assets/images/landing-page-banner-image-desktop.svg";
-import BannerMobileImage from "assets/images/landing-page-banner-image-mobile.svg";
-import AutoScrollbar from "common-components/aut-scrollbar/auto-scrollbar";
-import ChevronDownIcon from "assets/icons/chevron-down-rounded.svg"
 import BookAFreeDemo from "global-components/buttons/book-a-free-demo/book-a-free-demo";
+import DesktopHeroImage from "assets/images/desktop-hero-image.webp"
+import MobileHeroImage from "assets/images/mobile-hero-image.webp"
 import Image from "next/image";
-import Button from "common-components/button/button";
-import ExperienceRating from "./experience-rating/experience-rating";
+
 const TopSection = () => {
   return (
-    <div className="w-full flex-col space-y-10 md:flex-row flex justify-between" id="homepage">
-
-      <div className="space-y-5 md:space-y-12">
-        <div className="text-3xl md:text-5xl md:leading-[65px] font-semibold text-gray-800  text-center md:text-left">
-          <p>Run Your D2C Business</p>
-          <p> <span className="text-primary-700">“Profitably”</span></p>
-        </div>
-        <p className="text-lg md:text-3xl font-semibold text-gray-700 text-center md:text-left">Your all-in-one stack to run profitable,<br className="hidden md:block" /> streamlined storefronts with ease</p>
-        <div className="flex justify-center md:justify-normal">
-          <BookAFreeDemo />
-        </div>
-        <div className="hidden md:block pt-2">
-          <p className="cursor-pointer font-bold text-gray-500">Seamless Shopping Experience <br />Starts Here &rarr;</p>
-        </div>
+    <div className="pt-[76px] pb-10" id="home">
+      <div className="text-center space-y-2">
+        <p className="text-[#0B4627] text-[52px] font-bold leading-[60px]">Run Your D2C Brand — <span className="bg-[linear-gradient(90deg,_#0B4627_0%,_#1FC16B_92.31%)] bg-clip-text text-transparent">Profitably</span></p>
+        <p className="text-[#0B4627] text-[52px] font-bold leading-[60px]">Without the Chaos</p>
       </div>
-
-      <div className="flex justify-center md:hidden relative">
-        <Image src={BannerMobileImage} alt="BannerImage.svg" className="" />
-        <div className="absolute right-12 top-5">
-          <ExperienceRating />
-        </div>
+      <div className="mt-5">
+        <p className="text-[#0B4627] text-center text-lg font-medium leading-7">Everything you need to launch, grow, and scale your online store — from storefront to <br />shipping to ad campaigns — all in one platform.</p>
       </div>
-
-      <div className="hidden md:block relative">
-        <Image src={BannerDesktopImage} alt="BannerImage.svg" className="" />
-        <div className="absolute right-5 top-5">
-          <ExperienceRating />
-        </div>
+      <div className="mt-7 mx-auto  flex justify-center">
+        <BookAFreeDemo />
       </div>
-    </div >
+      {/* <div className="mt-6">
+        <Image src={DesktopHeroImage} alt="DesktopHeroImage" className="rounded-[16px] w-1/2 mx-auto" />
+        <Image src={MobileHeroImage} alt="MobileHeroImage" className="rounded-[16px]  flex-1" />
+      </div> */}
+    </div>
   )
 }
 

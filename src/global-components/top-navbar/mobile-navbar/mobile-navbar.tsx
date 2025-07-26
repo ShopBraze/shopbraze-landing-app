@@ -1,7 +1,7 @@
 
 
 import Image from "next/image"
-import ShopbrazeDesktopLogo from "assets/website-logo/desktop-logo.svg"
+import ShopbrazeLogo from "assets/website-logo/shopbraze-logo.svg"
 import Button from "common-components/button/button"
 import ThreeDashHorizontalBarIcon from "assets/icons/three-dash-horizontal-bar-nav.svg"
 import BookAFreeDemo from "global-components/buttons/book-a-free-demo/book-a-free-demo"
@@ -21,7 +21,7 @@ const MobileNavbar = () => {
     <>
       <div className="flex justify-between items-center ">
         <div className="flex flex-col xs:flex-row items-center gap-1 xs:gap-3 md:gap-6">
-          <Image src={ShopbrazeDesktopLogo} alt="shopbraze_logo.svg" height={80} width={100} className="h-14 w-14 md:h-20 md:w-24" />
+          <Image src={ShopbrazeLogo} alt="shopbraze_logo.svg" height={80} width={100} className="h-14 w-14 md:h-20 md:w-24" />
           <p className="text-primary-500 font-bold text-sm md:text-2xl uppercase">Shop Braze</p>
         </div>
         <div className="flex items-center gap-5">

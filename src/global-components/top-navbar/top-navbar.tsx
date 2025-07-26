@@ -3,7 +3,7 @@ import MobileNavbar from "./mobile-navbar/mobile-navbar"
 
 const TopNavbar = () => {
   return (
-    <div className="h-[90px] sticky top-0 border-b border-gray-200 bg-[#fff] z-20">
+    <div className="sticky top-0 border-b border-[#F2F2F2] bg-[#fff] z-20">
       <div className="hidden md:block ">
         <DesktopNavbar />
       </div>

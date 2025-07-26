@@ -1,36 +1,37 @@
 
 import Image from "next/image"
-import ShopbrazeDesktopLogo from "assets/website-logo/desktop-logo.svg"
+import ShopbrazeLogo from "assets/website-logo/shopbraze-logo.svg"
 import { NavbarPaths } from "constants/navbar"
-import { useEffect, useState } from "react";
+import BookAFreeDemo from "global-components/buttons/book-a-free-demo/book-a-free-demo";
 import { ScrollToElement } from "utils/scroll-to-element";
-import useNavbar from "../use-navbar";
 
 
 const DesktopNavbar = () => {
-  const { activeDiv } = useNavbar()
+  // const { activeDiv } = useNavbar()
 
   return (
-    <div className="flex justify-between items-center h-[90px] sticky top-0 border-b border-gray-200 bg-[#fff] z-20">
-      <div className="flex items-center gap-3 md:gap-6">
-        <Image src={ShopbrazeDesktopLogo} alt="shopbraze_logo.svg" height={80} width={100} className="h-14 w-14 md:h-20 md:w-24" />
-        <p className="text-primary-500 font-bold text-2xl uppercase">Shop Braze</p>
+    <div className="px-20 py-5 flex justify-between items-center">
+      <div className="flex gap-2 items-center">
+        <Image src={ShopbrazeLogo} alt="shopbraze_logo.svg" height={80} width={100} className="h-[47px] w-[43px]" />
+        <p className="text-[#017356] text-2xl font-semibold leading-[29px]">ShopBraze</p>
       </div>
-      <div className="flex items-center gap-2">
+
+      <div className="flex gap-3 items-center">
         {
           NavbarPaths.map((item) => {
             return (
-              <div className="flex gap-3 items-center py-2 px-3 rounded-lg bg-gray-100 cursor-pointer" key={item.id} onClick={() => { ScrollToElement(item.name?.toLowerCase()) }}>
-                {activeDiv === item.name?.toLowerCase() && <div className="h-2 w-2 rounded-full bg-primary-500" />}
-                <p className="text-sm text-gray-600 font-semibold">{item.name}</p>
+              <div className="px-2 py-1.5 flex justify-center items-center" key={item.id} onClick={() => { ScrollToElement(item?.name?.toLowerCase()) }}>
+                <p className="text-[#0B4627] text-[17px] font-medium -tracking-[0.17px]">{item.name}</p>
               </div>
             )
           })
         }
       </div>
-      {/* <Button variant="primary" className="text-[#fff] font-medium !rounded-full">Sign In</Button> */}
+      <BookAFreeDemo className="shadow-[0_6.52px_21.32px_0_rgba(0,0,0,0.35)]" />
     </div>
   )
 }
 
 export default DesktopNavbar
+
+
