@@ -9,7 +9,7 @@ export default {
     site_name: "ShopBraze",
     images: [
       {
-        url: "https://res.cloudinary.com/dwr2iupak/image/upload/v1735625906/Redmi_Note_11_Pro_1_xaxkew.png",
+        url: "https://shopbraze-bucket.s3.ap-south-1.amazonaws.com/shopbraze-desktop.png",
         width: 800,
         height: 600,
         alt: "Enhance your profitability",
