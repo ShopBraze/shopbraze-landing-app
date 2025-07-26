@@ -19,13 +19,13 @@ const MobileNavbar = () => {
   }
   return (
     <>
-      <div className="flex justify-between items-center ">
+      <div className="flex justify-between items-center px-4 py-2.5">
         <div className="flex flex-col xs:flex-row items-center gap-1 xs:gap-3 md:gap-6">
-          <Image src={ShopbrazeLogo} alt="shopbraze_logo.svg" height={80} width={100} className="h-14 w-14 md:h-20 md:w-24" />
-          <p className="text-primary-500 font-bold text-sm md:text-2xl uppercase">Shop Braze</p>
+          <Image src={ShopbrazeLogo} alt="shopbraze_logo.svg" height={80} width={100} className="h-10 w-10 md:h-20 md:w-24" />
+          <p className="text-primary-500 font-bold text-[13px] md:text-2xl uppercase">ShopBraze</p>
         </div>
         <div className="flex items-center gap-5">
-          <BookAFreeDemo />
+          <BookAFreeDemo className="text-sm px-2.5 py-2" />
           <Button onClick={handleToggleSidebar}>
             <Image src={ThreeDashHorizontalBarIcon} alt="nav-dash.svg" className="" />
           </Button>
@@ -39,7 +39,7 @@ const MobileNavbar = () => {
           </div>
           <div className="p-5 space-y-5">
             {
-              ["Homepage", "Testimonials", "Pricing"].map((item, index) => {
+              ["Home", "Testimonials", "Pricing"].map((item, index) => {
                 return (
                   <p className="text-sm md:text-base font-medium cursor-pointer hover:text-primary-400 text-gray-500" key={index}
                     onClick={() => {
