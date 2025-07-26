@@ -6,7 +6,7 @@ export default {
     type: "website",
     locale: "en_IN",
     url: "https://shopbraze.com",
-    site_name: "Shop Braze",
+    site_name: "ShopBraze",
     images: [
       {
         url: "https://res.cloudinary.com/dwr2iupak/image/upload/v1735625906/Redmi_Note_11_Pro_1_xaxkew.png",
