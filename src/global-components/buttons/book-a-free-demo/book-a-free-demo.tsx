@@ -10,8 +10,8 @@ const BookAFreeDemo = ({ buttonText = "Book a Free Demo", className }: BookAFree
     window.open('https://calendly.com/shopbraze/30min')
   }
   return (
-    <Button variant="primary"
-      className={`font-semibold text-xs md:text-sm text-[#fff] !rounded-full ${className}`}
+    <Button
+      className={`bg-[#017356] py-3 px-[18px] flex justify-center items-center text-[#fff] font-semibold leading-[22px] rounded-xl shadow-[0_-4px_0_0_#62A883_inset] ${className}`}
       onClick={handleBookClick}
     >
       {buttonText}

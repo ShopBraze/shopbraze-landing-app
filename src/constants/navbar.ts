@@ -1,7 +1,7 @@
 export const NavbarPaths = [
   {
     id: 1,
-    name: 'Homepage'
+    name: 'Features'
   },
   {
     id: 2,

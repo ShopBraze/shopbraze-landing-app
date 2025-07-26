@@ -9,13 +9,13 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className='max-w-[1440px] mx-auto xl:px-20 lg:px-16 md:px-12 px-4'>
+    <>
       <Head>
         <title>ShopBraze</title>
       </Head>
       <TopNavbar />
       {children}
-    </div>
+    </>
   )
 }
 
