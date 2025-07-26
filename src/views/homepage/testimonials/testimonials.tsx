@@ -1,6 +1,6 @@
 import LetrendzImage from "assets/images/testimonials/le-trendz.png"
 import LabelDaniloImage from "assets/images/testimonials/label-danilo.png"
-import JalipaImage from "assets/images/testimonials/jalipa.png"
+import ShiniraImage from "assets/images/testimonials/shinira.jpg"
 import Image from "next/image"
 
 const Testimonials = () => {
@@ -40,7 +40,7 @@ const Testimonials = () => {
               The platform's analytics provided clear insights into customer behavior, allowing us to adjust and improve our campaigns. The result has been higher conversion rates and strong customer retention, making Shopbraze indispensable to our growth
             </p>
             <div className="w-full h-[1px] bg-[#E7E7E5] my-3 md:my-6" />
-            <Image src={JalipaImage} alt="Jalipa.png" className="w-24 md:w-auto" />
+            <Image src={ShiniraImage} alt="Jalipa.png" className="w-24 md:w-auto" />
           </div>
         </div>
       </div>

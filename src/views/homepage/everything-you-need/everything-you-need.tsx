@@ -1,8 +1,7 @@
 
 import useEveryThingYouNeed from './use-everything-you-need'
-import ShippingBox from 'assets/icons/everything-you-need/shipping-box.svg'
-import CustomerPurchaseOneImage from 'assets/icons/everything-you-need/customer-purchase-1.svg'
-import CustomerPurchaseTwoImage from 'assets/icons/everything-you-need/customer-purchase-2.svg'
+import ShippingImage from "assets/icons/everything-you-need/shipping.jpg"
+import MarketingImage from "assets/icons/everything-you-need/marketing.jpg"
 import DesktopHeroImage from "assets/images/desktop-hero-image.webp"
 import Image from 'next/image'
 
@@ -37,13 +36,13 @@ const EverythingYouNeed = () => {
           {
             activeTab === "shipping" && (
               <div className='w-full h-full flex flex-col md:flex-row'>
-                <div className="flex-1 flex justify-center items-center bg-[#FBF2D4]">
-                  <Image src={ShippingBox} alt="Shipping Box" className='h-[200px] w-full md:w-auto' />
+                <div className="flex-1 flex justify-center items-center">
+                  <Image src={ShippingImage} alt="Shipping Box" className='h-[300px]  w-auto' />
                 </div>
                 <div className="flex-1 bg-[#F5F4F4] py-4 md:py-0 px-4 md:px-10 flex justify-center items-center">
                   <div className="space-y-4 md:space-y-6">
                     <p className="text-2xl md:text-[36px] font-medium md:leading-[47px]">Shipping</p>
-                    <p className="text-[#000] text-sm md:text-lg font-medium md:leading-[30px]">We offer fast and reliable shipping with multiple options: Standard (5-7 days), Express (2-3 days), and Overnight (next-day delivery). Enjoy free shipping on orders above ₹1,000, with real-time tracking available for all shipments</p>
+                    <p className="text-gray-700 text-sm md:text-lg font-medium md:leading-[30px]">We offer fast and reliable shipping with multiple options: Standard (5-7 days), Express (2-3 days), and Overnight (next-day delivery). Enjoy free shipping on orders above ₹1,000, with real-time tracking available for all shipments</p>
                   </div>
                 </div>
               </div>
@@ -53,14 +52,13 @@ const EverythingYouNeed = () => {
           {
             activeTab === "marketing" && (
               <div className='w-full h-full flex flex-col md:flex-row'>
-                <div className="flex-1 flex flex-col justify-center items-center bg-[#F6EDFF] gap-5">
-                  <Image src={CustomerPurchaseOneImage} alt="Customer Purchase One" className='h-[200px] w-full md:w-auto' />
-                  {/* <Image src={CustomerPurchaseTwoImage} alt="Customer Purchase Two" /> */}
+                <div className="flex-1 flex justify-center items-center">
+                  <Image src={MarketingImage} alt="Customer Purchase One" className='h-[300px] md:w-auto' />
                 </div>
                 <div className="flex-1 bg-[#F5F4F4] py-4 md:py-0 px-4 md:px-10 flex justify-center items-center">
                   <div className="space-y-4 md:space-y-6">
                     <p className="text-2xl md:text-[36px] font-medium md:leading-[47px]">Marketing</p>
-                    <p className="text-[#000] text-sm md:text-lg font-medium md:leading-[30px]">ShopBraze is an e-commerce marketing solution designed to boost your online store's visibility, drive targeted traffic, and maximize sales. From personalized campaigns to data-driven insights.</p>
+                    <p className="text-gray-700 text-sm md:text-lg font-medium md:leading-[30px]">ShopBraze is an e-commerce marketing solution designed to boost your online store's visibility, drive targeted traffic, and maximize sales. From personalized campaigns to data-driven insights.</p>
                   </div>
                 </div>
               </div>
@@ -71,12 +69,12 @@ const EverythingYouNeed = () => {
             activeTab === "website" && (
               <div className='w-full h-full flex flex-col md:flex-row'>
                 <div className="flex-1 py-4 md:py-0 px-3 md:px-6 flex justify-center items-center bg-[#E4B9BA]">
-                  <Image src={DesktopHeroImage} alt="Shipping Box" className='h-[200px] w-full md:w-auto' />
+                  <Image src={DesktopHeroImage} alt="Shipping Box" className='' />
                 </div>
                 <div className="flex-1 bg-[#F5F4F4] py-4 md:py-0 px-4 md:px-10 flex justify-center items-center">
                   <div className="space-y-4 md:space-y-6">
                     <p className="text-2xl md:text-[36px] font-medium md:leading-[47px]">Website</p>
-                    <p className="text-[#000] text-sm md:text-lg font-medium md:leading-[30px]">Your ultimate e-commerce marketing partner! Boost sales, attract customers, and grow your online store with our personalized strategies and data-driven solutions.</p>
+                    <p className="text-gray-700 text-sm md:text-lg font-medium md:leading-[30px]">Your ultimate e-commerce marketing partner! Boost sales, attract customers, and grow your online store with our personalized strategies and data-driven solutions.</p>
                   </div>
                 </div>
               </div>

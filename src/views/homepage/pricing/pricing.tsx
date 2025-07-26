@@ -9,7 +9,7 @@ const Pricing = () => {
       </div>
 
       <div className="w-full mt-10 md:mt-[70px]">
-        <div className="mx-auto w-full md:w-[374px] px-7 py-6 bg-[#F7F7F7] rounded-[20px] space-y-6">
+        <div className="mx-auto w-full md:w-[374px] px-4 md:px-7 py-4 md:py-6 bg-[#F7F7F7] rounded-[20px] space-y-6">
           <div>
             <p className="text-[#000] text-lg font-medium md:leading-[26px]">ShopBraze</p>
             <p className="mt-3 text-[#000] text-2xl md:text-[40px] font-medium md:leading-[52px]">Free</p>
