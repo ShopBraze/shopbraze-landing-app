@@ -20,7 +20,7 @@ const DesktopNavbar = () => {
         {
           NavbarPaths.map((item) => {
             return (
-              <div className="px-2 py-1.5 flex justify-center items-center" key={item.id} onClick={() => { ScrollToElement(item?.name?.toLowerCase()) }}>
+              <div className="px-2 py-1.5 flex justify-center items-center cursor-pointer" key={item.id} onClick={() => { ScrollToElement(item?.name?.toLowerCase()) }}>
                 <p className="text-[#0B4627] text-[17px] font-medium -tracking-[0.17px]">{item.name}</p>
               </div>
             )
