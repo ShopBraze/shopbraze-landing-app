@@ -1,5 +1,5 @@
 export default {
-  title: "Shopbraze - Elevate Your E-commerce Journey",
+  title: "ShopBraze - Elevate Your E-commerce Journey",
   description:
     "The ultimate platform to enhance your e-commerce profitability and success.",
   openGraph: {
