@@ -76,7 +76,7 @@ const useBasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDeta
 
     try {
       setIsLoading(true)
-      const response = await fetch(`${process.env.NEXT_PUBLIC_DASHBOARD_API_URL}sellers-enquiry`, {
+      const response = await fetch(`https://dashboard-api-dev.shopbraze.in/api/sellers-enquiry`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
