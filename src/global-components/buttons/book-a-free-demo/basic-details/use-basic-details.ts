@@ -27,7 +27,7 @@ const useBasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDeta
 
   // Marketplace options
   const marketplaceOptions = [
-    { value: 'Amazon/Flipkart/Meesho/Other MarketPlace', label: 'Amazon/Flipkart/Meesho/Other MarketPlace' },
+    { value: 'Amazon/Flipkart/Meesho/Other Marketplace', label: 'Amazon/Flipkart/Meesho/Other Marketplace' },
     { value: 'Own Website', label: 'Own Website' },
     { value: 'Both (MarketPlace and Own Website)', label: 'Both (MarketPlace and Own Website)' },
     { value: 'None', label: 'None' }
