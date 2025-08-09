@@ -5,6 +5,7 @@ import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
 import { initMixpanel } from "lib/mixpanelClient"
 import { generateUniqueEventId } from "utils/generate-unique-event-id"
+import { Toaster } from "react-hot-toast"
 
 const App = ({ Component, pageProps }: AppProps) => {
   const FB_PIXEL_ID = '665965192426562'
@@ -83,7 +84,13 @@ const App = ({ Component, pageProps }: AppProps) => {
           />
         </noscript>
       </>
-
+      <Toaster toastOptions={{
+        style: {
+          background: '#333',
+          color: '#fff',
+        },
+      }}
+      />
       <Component {...pageProps} />
     </>
   )

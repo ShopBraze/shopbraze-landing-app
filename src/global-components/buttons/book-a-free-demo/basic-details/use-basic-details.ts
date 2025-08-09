@@ -12,30 +12,26 @@ const useBasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDeta
   const [isLoading, setIsLoading] = useState(false)
   const [formErrors, setFormErrors] = useState({
     mobileNumber: '',
-    alternativeMobileNumber: '',
   })
+
+  // Product category options
+  const productCategoryOptions = [
+    { value: 'Apparel', label: 'Apparel' },
+    { value: 'Home Decor/Furnishing/Kitchen', label: 'Home Decor/Furnishing/Kitchen' },
+    { value: 'Fashion accesssories', label: 'Fashion accesssories' },
+    { value: 'Health & Fitness', label: 'Health & Fitness' },
+    { value: 'FMCG/Consumer Goods', label: 'FMCG/Consumer Goods' },
+    { value: 'Beauty & Cosmetics', label: 'Beauty & Cosmetics' },
+    { value: 'Others', label: 'Others(e.g., Jewellery, Toys, etc.)' }
+  ]
 
   // Marketplace options
   const marketplaceOptions = [
-    { value: 'amazon', label: 'Amazon' },
-    { value: 'flipkart', label: 'Flipkart' },
-    { value: 'meesho', label: 'Meesho' },
-    { value: 'others', label: 'Others' }
+    { value: 'Amazon/Flipkart/Meesho/Other MarketPlace', label: 'Amazon/Flipkart/Meesho/Other MarketPlace' },
+    { value: 'Own Website', label: 'Own Website' },
+    { value: 'Both (MarketPlace and Own Website)', label: 'Both (MarketPlace and Own Website)' },
+    { value: 'None', label: 'None' }
   ]
-
-  // Handle marketplace selection
-  const handleMarketplaceChange = (value: string) => {
-    const currentMarketplaces = formData.marketPlace || []
-    const newMarketplaces = currentMarketplaces.includes(value)
-      ? currentMarketplaces.filter((item: string) => item !== value)
-      : [...currentMarketplaces, value]
-
-    setFormData({
-      ...formData,
-      marketPlace: newMarketplaces
-    })
-  }
-
 
   useEffect(() => {
     const mobile = formData.mobileNumber.trim();
@@ -54,31 +50,13 @@ const useBasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDeta
     }
   }, [formData.mobileNumber]);
 
-
-  useEffect(() => {
-    const mobile = formData.alternativeMobileNumber.trim();
-
-    if (!mobile) return;
-    else if (!/^[1-9]\d{9}$/.test(mobile)) {
-      setFormErrors((prev) => ({
-        ...prev,
-        alternativeMobileNumber: 'Enter a valid mobile number',
-      }));
-    } else {
-      setFormErrors((prev: any) => {
-        const { alternativeMobileNumber, ...rest } = prev;
-        return rest;
-      });
-    }
-  }, [formData.alternativeMobileNumber]);
-
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     try {
       setIsLoading(true)
       const response = await fetch(`https://dashboard-api-dev.shopbraze.in/api/sellers-enquiry`, {
+        // const response = await fetch(`http://localhost:8080/api/sellers-enquiry`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -86,12 +64,9 @@ const useBasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDeta
         body: JSON.stringify({
           name: formData.name,
           mobileNumber: formData.mobileNumber,
-          alternativeMobileNumber: formData.alternativeMobileNumber,
           email: formData.email,
-          website: formData.website,
-          city: formData.city,
-          state: formData.state,
-          annualTurnover: formData.annualTurnover,
+          product_category: formData.product_category,
+          number_of_orders: formData.number_of_orders,
           marketPlace: formData.marketPlace,
         }),
       });
@@ -116,13 +91,28 @@ const useBasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDeta
       setIsLoading(false)
     }
   }
+
+  // Check if all required fields are filled
+  const isFormValid = () => {
+    return (
+      formData.name.trim() !== '' &&
+      formData.mobileNumber.trim() !== '' &&
+      formData.email.trim() !== '' &&
+      formData.product_category.trim() !== '' &&
+      formData.marketPlace.trim() !== '' &&
+      formData.number_of_orders.trim() !== '' &&
+      !formErrors.mobileNumber
+    )
+  }
+
   return {
     formErrors,
     setFormErrors,
     handleSubmit,
     isLoading,
+    productCategoryOptions,
     marketplaceOptions,
-    handleMarketplaceChange,
+    isFormValid,
   }
 }
 

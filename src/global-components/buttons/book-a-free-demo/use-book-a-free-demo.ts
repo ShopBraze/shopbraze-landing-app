@@ -16,13 +16,10 @@ const useBookAFreeDemo = () => {
   const [formData, setFormData] = useState({
     name: '',
     mobileNumber: '',
-    alternativeMobileNumber: '',
     email: '',
-    website: '',
-    marketPlace: [] as string[],
-    city: '',
-    state: '',
-    annualTurnover: '',
+    product_category: '',
+    number_of_orders: '',
+    marketPlace: '',
   })
 
 

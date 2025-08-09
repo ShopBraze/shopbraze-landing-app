@@ -6,6 +6,7 @@ import CheckIcon from 'assets/icons/success-check.svg'
 import OtpInput from 'react-otp-input'
 import useBookFreeDemoForm from './use-book-free-demo-form'
 import { useRouter } from 'next/navigation'
+import SingleSelect from 'global-components/single-select/single-select'
 
 const BookFreeDemoForm = () => {
   const router = useRouter()
@@ -15,24 +16,40 @@ const BookFreeDemoForm = () => {
     isLoading,
     otp,
     setOtp,
-    formErrors,
     formData,
     setFormData,
-    marketplaceOptions,
-    handleMarketplaceChange,
+    formErrors,
     handleSubmit,
     handleVerifyOtp,
-    handleCurrentStep,
-    isFormValid,
+    isFormValid
   } = useBookFreeDemoForm()
+
+  // Product category options
+  const productCategoryOptions = [
+    { value: 'Apparel', label: 'Apparel' },
+    { value: 'Home Decor/Furnishing/Kitchen', label: 'Home Decor/Furnishing/Kitchen' },
+    { value: 'Fashion accesssories', label: 'Fashion accesssories' },
+    { value: 'Health & Fitness', label: 'Health & Fitness' },
+    { value: 'FMCG/Consumer Goods', label: 'FMCG/Consumer Goods' },
+    { value: 'Beauty & Cosmetics', label: 'Beauty & Cosmetics' },
+    { value: 'Others', label: 'Others(e.g., Jewellery, Toys, etc.)' }
+  ]
+
+  // Marketplace options
+  const marketplaceOptions = [
+    { value: 'Amazon/Flipkart/Meesho/Other MarketPlace', label: 'Amazon/Flipkart/Meesho/Other MarketPlace' },
+    { value: 'Own Website', label: 'Own Website' },
+    { value: 'Both (Marketplace and Own Website)', label: 'Both (Marketplace and Own Website)' },
+    { value: 'None', label: 'None' }
+  ]
 
   // Step 1: Basic Details Form
   if (currentStep === 1) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="flex flex-col">
         <div className="flex-1 py-3">
           <div className="max-w-2xl mx-auto">
-            <div className="space-y-1.5 p-3 md:p-6 border-b border-gray-200">
+            <div className="space-y-1 md:space-y-[2px] p-4 md:p-6 border-b border-gray-200">
               <div className="flex justify-between items-center">
                 <h2 className='text-2xl font-semibold leading-8 text-[#000]'>Book a Free Demo</h2>
               </div>
@@ -43,23 +60,23 @@ const BookFreeDemoForm = () => {
 
             <form onSubmit={handleSubmit} className="p-3 md:p-6 space-y-3 md:space-y-5">
               <div className="space-y-1.5">
-                <p className="text-sm font-medium">Name <span className="text-red-300">*</span></p>
+                <p className="text-xs font-medium md:text-sm md:font-normal">Name <span className="text-red-300">*</span></p>
                 <input
                   type="text"
                   required
-                  className="w-full border border-gray-200 rounded-md px-3 py-1.5 md:py-2 outline-none focus:border-[#017356]"
+                  className="w-full text-sm text-gray-700 border border-gray-200 rounded-md px-3 py-1.5 md:py-2 outline-none focus:border-[#017356]"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
               </div>
 
               <div className="space-y-1.5">
-                <p className="text-sm">Mobile Number <span className="text-success-500">(Whatsapp)</span> <span className="text-red-300">*</span></p>
+                <p className="text-xs font-medium md:text-sm md:font-normal">Mobile Number <span className="text-success-500">(Whatsapp)</span> <span className="text-red-300">*</span></p>
                 <input
                   type="tel"
                   required
                   maxLength={10}
-                  className={`w-full border border-gray-200 rounded-md px-3 py-1.5 md:py-2 outline-none focus:border-[#017356] ${formErrors?.mobileNumber ? 'border-red-300' : ''}`}
+                  className={`w-full text-sm border text-gray-700 border-gray-200 rounded-md px-3 py-1.5 md:py-2 outline-none focus:border-[#017356] ${formErrors?.mobileNumber ? 'border-red-300' : ''}`}
                   value={formData.mobileNumber}
                   onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
                 />
@@ -67,84 +84,42 @@ const BookFreeDemoForm = () => {
               </div>
 
               <div className="space-y-1.5">
-                <p className="text-sm">Alternative Mobile Number</p>
-                <input
-                  type="tel"
-                  maxLength={10}
-                  className={`w-full border border-gray-200 rounded-md px-3 py-1.5 md:py-2 outline-none focus:border-[#017356] ${formErrors?.alternativeMobileNumber ? 'border-red-300' : ''}`}
-                  value={formData.alternativeMobileNumber}
-                  onChange={(e) => setFormData({ ...formData, alternativeMobileNumber: e.target.value })}
-                />
-                {formErrors?.alternativeMobileNumber && <p className="text-xs text-red-300">{formErrors?.alternativeMobileNumber}</p>}
-              </div>
-
-              <div className="space-y-1.5">
-                <p className="text-sm">Email <span className="text-red-300">*</span></p>
+                <p className="text-xs font-medium md:text-sm md:font-normal">Email <span className="text-red-300">*</span></p>
                 <input
                   type="email"
                   required
-                  className="w-full border border-gray-200 rounded-md px-3 py-1.5 md:py-2 outline-none focus:border-[#017356]"
+                  className="w-full text-sm text-gray-700 border border-gray-200 rounded-md px-3 py-1.5 md:py-2 outline-none focus:border-[#017356]"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
               </div>
 
-              <div className="space-y-3 py-3">
-                <p className="text-sm">Current Marketplace</p>
-                <div className="space-y-2">
-                  {marketplaceOptions?.map((option) => (
-                    <label key={option?.value} className="flex items-center space-x-3 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={formData.marketPlace?.includes(option?.value) || false}
-                        onChange={() => handleMarketplaceChange(option?.value)}
-                        className="w-4 h-4"
-                      />
-                      <span className="text-sm text-gray-700">{option?.label}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
+              <SingleSelect
+                options={productCategoryOptions}
+                value={formData.product_category}
+                onChange={(value) => setFormData({ ...formData, product_category: value })}
+                label="What are the category of products you sell?"
+                required
+                className='py-2'
+              />
+
+              <SingleSelect
+                options={marketplaceOptions}
+                value={formData.marketPlace}
+                onChange={(value) => setFormData({ ...formData, marketPlace: value })}
+                label="Where do you sell your products online?"
+                required
+                className='py-2'
+              />
 
               <div className="space-y-1.5">
-                <p className="text-sm">Website</p>
+                <p className="text-xs font-medium md:text-sm md:font-normal">How many online orders do you currently do per month? <span className="text-red-300">*</span></p>
                 <input
-                  type="text"
-                  className="w-full border border-gray-200 rounded-md px-3 py-1.5 md:py-2 outline-none focus:border-[#017356]"
-                  value={formData.website}
-                  onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                />
-              </div>
-
-              <div className="space-y-1.5">
-                <p className="text-sm">City <span className="text-red-300">*</span></p>
-                <input
-                  type="text"
                   required
-                  className="w-full border border-gray-200 rounded-md px-3 py-1.5 md:py-2 outline-none focus:border-[#017356]"
-                  value={formData.city}
-                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                />
-              </div>
-
-              <div className="space-y-1.5">
-                <p className="text-sm">State <span className="text-red-300">*</span></p>
-                <input
-                  type="text"
-                  required
-                  className="w-full border border-gray-200 rounded-md px-3 py-1.5 md:py-2 outline-none focus:border-[#017356]"
-                  value={formData.state}
-                  onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-                />
-              </div>
-
-              <div className="space-y-1.5">
-                <p className="text-sm">Annual Turnover</p>
-                <input
-                  type="text"
-                  className="w-full border border-gray-200 rounded-md px-3 py-1.5 md:py-2 outline-none focus:border-[#017356]"
-                  value={formData.annualTurnover}
-                  onChange={(e) => setFormData({ ...formData, annualTurnover: e.target.value })}
+                  type="number"
+                  className="w-full text-sm text-gray-700 border border-gray-200 rounded-md px-3 py-1.5 md:py-2 outline-none focus:border-[#017356]"
+                  value={formData.number_of_orders}
+                  onChange={(e) => setFormData({ ...formData, number_of_orders: e.target.value })}
                 />
               </div>
 
@@ -157,7 +132,7 @@ const BookFreeDemoForm = () => {
                   isLoading={isLoading}
                   disabled={isLoading || !isFormValid()}
                 >
-                  Get Started
+                  Submit
                 </Button>
               </div>
             </form>

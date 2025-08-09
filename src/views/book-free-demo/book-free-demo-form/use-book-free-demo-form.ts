@@ -1,15 +1,13 @@
 import { useState, useEffect } from 'react'
+import toast from 'react-hot-toast'
 
 type FormData = {
   name: string
   mobileNumber: string
-  alternativeMobileNumber: string
   email: string
-  website: string
-  marketPlace: string[]
-  city: string
-  state: string
-  annualTurnover: string
+  marketPlace: string
+  number_of_orders: string
+  product_category: string
 }
 
 const useBookFreeDemoForm = () => {
@@ -18,41 +16,16 @@ const useBookFreeDemoForm = () => {
   const [otp, setOtp] = useState('')
   const [formErrors, setFormErrors] = useState({
     mobileNumber: '',
-    alternativeMobileNumber: '',
   })
 
   const [formData, setFormData] = useState<FormData>({
     name: '',
     mobileNumber: '',
-    alternativeMobileNumber: '',
     email: '',
-    website: '',
-    marketPlace: [],
-    city: '',
-    state: '',
-    annualTurnover: '',
+    marketPlace: '',
+    number_of_orders: '',
+    product_category: ''
   })
-
-  // Marketplace options
-  const marketplaceOptions = [
-    { value: 'amazon', label: 'Amazon' },
-    { value: 'flipkart', label: 'Flipkart' },
-    { value: 'meesho', label: 'Meesho' },
-    { value: 'others', label: 'Others' }
-  ]
-
-  // Handle marketplace selection
-  const handleMarketplaceChange = (value: string) => {
-    const currentMarketplaces = formData.marketPlace || []
-    const newMarketplaces = currentMarketplaces.includes(value)
-      ? currentMarketplaces.filter((item: string) => item !== value)
-      : [...currentMarketplaces, value]
-
-    setFormData({
-      ...formData,
-      marketPlace: newMarketplaces
-    })
-  }
 
   // Validation effects
   useEffect(() => {
@@ -72,29 +45,13 @@ const useBookFreeDemoForm = () => {
     }
   }, [formData.mobileNumber]);
 
-  useEffect(() => {
-    const mobile = formData.alternativeMobileNumber.trim();
-
-    if (!mobile) return;
-    else if (!/^[1-9]\d{9}$/.test(mobile)) {
-      setFormErrors((prev) => ({
-        ...prev,
-        alternativeMobileNumber: 'Enter a valid mobile number',
-      }));
-    } else {
-      setFormErrors((prev: any) => {
-        const { alternativeMobileNumber, ...rest } = prev;
-        return rest;
-      });
-    }
-  }, [formData.alternativeMobileNumber]);
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     try {
       setIsLoading(true)
       const response = await fetch(`https://dashboard-api-dev.shopbraze.in/api/sellers-enquiry`, {
+        // const response = await fetch(`http://localhost:8080/api/sellers-enquiry`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -102,24 +59,21 @@ const useBookFreeDemoForm = () => {
         body: JSON.stringify({
           name: formData.name,
           mobileNumber: formData.mobileNumber,
-          alternativeMobileNumber: formData.alternativeMobileNumber,
           email: formData.email,
-          website: formData.website,
-          city: formData.city,
-          state: formData.state,
-          annualTurnover: formData.annualTurnover,
+          product_category: formData.product_category,
+          number_of_orders: formData.number_of_orders,
           marketPlace: formData.marketPlace,
         }),
       });
 
       if (response.ok) {
-        console.log('Form submitted successfully');
         setCurrentStep(2);
-      } else {
-        console.error('Failed to submit form');
+      }
+      else {
+        toast.error('Failed to submit form')
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      toast.error('Failed to submit form')
     } finally {
       setIsLoading(false)
     }
@@ -128,6 +82,7 @@ const useBookFreeDemoForm = () => {
   const handleVerifyOtp = () => {
     setIsLoading(true)
     fetch(`https://dashboard-api-dev.shopbraze.in/api/sellers-enquiry/verify-otp`, {
+      // fetch(`http://localhost:8080/api/sellers-enquiry/verify-otp`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -139,9 +94,13 @@ const useBookFreeDemoForm = () => {
     }).then((res) => {
       if (res.ok) {
         setCurrentStep(3)
+        toast.success('OTP verified successfully')
+      } else {
+        toast.error('Invalid OTP')
       }
     })
       .catch((err) => {
+        toast.error('Invalid OTP')
         console.log(err)
       })
       .finally(() => {
@@ -159,10 +118,10 @@ const useBookFreeDemoForm = () => {
       formData.name.trim() !== '' &&
       formData.mobileNumber.trim() !== '' &&
       formData.email.trim() !== '' &&
-      formData.city.trim() !== '' &&
-      formData.state.trim() !== '' &&
-      !formErrors.mobileNumber &&
-      !formErrors.alternativeMobileNumber
+      formData.product_category.trim() !== '' &&
+      formData.marketPlace.trim() !== '' &&
+      formData.number_of_orders.trim() !== '' &&
+      !formErrors.mobileNumber
     )
   }
 
@@ -176,8 +135,6 @@ const useBookFreeDemoForm = () => {
     formErrors,
     formData,
     setFormData,
-    marketplaceOptions,
-    handleMarketplaceChange,
     handleSubmit,
     handleVerifyOtp,
     handleCurrentStep,
