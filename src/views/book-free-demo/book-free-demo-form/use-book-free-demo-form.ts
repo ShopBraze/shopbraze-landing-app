@@ -1,18 +1,36 @@
-import { useEffect, useState } from "react"
-import { sendMixPanelEvent } from "lib/mixpanelClient"
-import { fbq } from "events/fb-pixel"
+import { useState, useEffect } from 'react'
 
-type BasicDetailsProps = {
-  formData: any,
-  setFormData: any
-  handleCurrentStep: (step: number) => void
+type FormData = {
+  name: string
+  mobileNumber: string
+  alternativeMobileNumber: string
+  email: string
+  website: string
+  marketPlace: string[]
+  city: string
+  state: string
+  annualTurnover: string
 }
 
-const useBasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDetailsProps) => {
+const useBookFreeDemoForm = () => {
+  const [currentStep, setCurrentStep] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
+  const [otp, setOtp] = useState('')
   const [formErrors, setFormErrors] = useState({
     mobileNumber: '',
     alternativeMobileNumber: '',
+  })
+
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    mobileNumber: '',
+    alternativeMobileNumber: '',
+    email: '',
+    website: '',
+    marketPlace: [],
+    city: '',
+    state: '',
+    annualTurnover: '',
   })
 
   // Marketplace options
@@ -36,7 +54,7 @@ const useBasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDeta
     })
   }
 
-
+  // Validation effects
   useEffect(() => {
     const mobile = formData.mobileNumber.trim();
 
@@ -54,7 +72,6 @@ const useBasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDeta
     }
   }, [formData.mobileNumber]);
 
-
   useEffect(() => {
     const mobile = formData.alternativeMobileNumber.trim();
 
@@ -71,7 +88,6 @@ const useBasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDeta
       });
     }
   }, [formData.alternativeMobileNumber]);
-
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -97,33 +113,76 @@ const useBasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDeta
       });
 
       if (response.ok) {
-        sendMixPanelEvent("Leads Basic Details Submitted")
-        fbq('track', 'CompleteRegistration', {
-          content_name: 'Shopbraze Free Demo',
-          status: 'success',
-          currency: 'INR',
-          value: 0
-        });
-        handleCurrentStep(2);
+        console.log('Form submitted successfully');
+        setCurrentStep(2);
       } else {
         console.error('Failed to submit form');
-        sendMixPanelEvent("Leads Basic Details Submission Failed")
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      sendMixPanelEvent("Leads Basic Details Submission Failed")
     } finally {
       setIsLoading(false)
     }
   }
+
+  const handleVerifyOtp = () => {
+    setIsLoading(true)
+    fetch(`https://dashboard-api-dev.shopbraze.in/api/sellers-enquiry/verify-otp`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        otp: otp,
+        phone: formData.mobileNumber,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        setCurrentStep(3)
+      }
+    })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }
+
+  const handleCurrentStep = (step: number) => {
+    setCurrentStep(step)
+  }
+
+  // Check if all required fields are filled
+  const isFormValid = () => {
+    return (
+      formData.name.trim() !== '' &&
+      formData.mobileNumber.trim() !== '' &&
+      formData.email.trim() !== '' &&
+      formData.city.trim() !== '' &&
+      formData.state.trim() !== '' &&
+      !formErrors.mobileNumber &&
+      !formErrors.alternativeMobileNumber
+    )
+  }
+
+
   return {
-    formErrors,
-    setFormErrors,
-    handleSubmit,
+    currentStep,
+    setCurrentStep,
     isLoading,
+    otp,
+    setOtp,
+    formErrors,
+    formData,
+    setFormData,
     marketplaceOptions,
     handleMarketplaceChange,
+    handleSubmit,
+    handleVerifyOtp,
+    handleCurrentStep,
+    isFormValid,
   }
 }
 
-export default useBasicDetails
+export default useBookFreeDemoForm

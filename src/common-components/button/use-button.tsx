@@ -14,7 +14,7 @@ const useButton = ({ onClick, variant }: UseButtonProps) => {
   const getButtonClassNameByVariant = () => {
     switch (variant) {
       case 'primary':
-        return 'py-2.5 px-[18px] border border-primary-500 rounded-lg bg-primary-500 text-[#fff] font-medium flex items-center justify-center'
+        return 'py-2.5 px-[18px] border border-primary-500 rounded-lg bg-primary-500 text-[#fff] font-medium flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed'
       case 'secondary':
         return 'py-2.5 px-[18px] border border-gray-200 rounded-lg bg-white text-primary-800 font-medium flex justify-center'
       case 'tertiary':

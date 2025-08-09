@@ -4,6 +4,8 @@ import Image from 'next/image'
 import ModalCloseIcon from 'assets/icons/modal-close-icon.svg'
 import { useState } from 'react'
 import OtpInput from 'react-otp-input'
+import { sendMixPanelEvent } from 'lib/mixpanelClient'
+import { fbq } from 'events/fb-pixel'
 
 type OtpInputProps = {
   handleCurrentStep: (step: number) => void
@@ -27,10 +29,19 @@ const OtpInputContainer = ({ handleCurrentStep, mobileNumber }: OtpInputProps) =
       }),
     }).then((res) => {
       if (res.ok) {
+        sendMixPanelEvent("Leads OTP Verified")
+        fbq('track', 'Lead', {
+          lead_type: 'demo_request',
+          content_name: 'Shopbraze Free Demo',
+          currency: 'INR',
+          value: 0
+        });
+
         handleCurrentStep(3)
       }
     })
       .catch((err) => {
+        sendMixPanelEvent("Leads OTP Verification Failed")
         console.log(err)
       })
       .finally(() => {

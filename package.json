@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@svgr/webpack": "^8.1.0",
+    "@types/mixpanel-browser": "^2.66.0",
+    "mixpanel-browser": "^2.67.0",
     "next": "15.1.0",
     "next-seo": "^6.6.0",
     "react": "^19.0.0",

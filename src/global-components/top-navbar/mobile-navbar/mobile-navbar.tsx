@@ -9,9 +9,11 @@ import CrossIcon from "assets/icons/cross-navbar.svg"
 import { useState } from "react"
 import { ScrollToElement } from "utils/scroll-to-element"
 import useNavbar from "../use-navbar"
+import { useRouter } from "next/router"
 
 const MobileNavbar = () => {
   // const { activeDiv } = useNavbar()
+  const router = useRouter()
 
   const [openSidebar, setOpenSidebar] = useState(false)
   const handleToggleSidebar = () => {
@@ -20,7 +22,7 @@ const MobileNavbar = () => {
   return (
     <>
       <div className="flex justify-between items-center px-4 py-2.5">
-        <div className="flex flex-col xs:flex-row items-center gap-1 xs:gap-3 md:gap-6">
+        <div className="flex flex-col xs:flex-row items-center gap-1 xs:gap-3 md:gap-6 cursor-pointer" onClick={() => router.push("/")}>
           <Image src={ShopbrazeLogo} alt="shopbraze_logo.svg" height={80} width={100} className="h-10 w-10 md:h-20 md:w-24" />
           <p className="text-primary-500 font-bold text-[13px] md:text-2xl uppercase">ShopBraze</p>
         </div>

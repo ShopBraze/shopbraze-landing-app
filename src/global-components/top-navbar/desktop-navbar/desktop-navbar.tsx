@@ -4,14 +4,16 @@ import ShopbrazeLogo from "assets/website-logo/shopbraze-logo.svg"
 import { NavbarPaths } from "constants/navbar"
 import BookAFreeDemo from "global-components/buttons/book-a-free-demo/book-a-free-demo";
 import { ScrollToElement } from "utils/scroll-to-element";
+import { useRouter } from "next/router";
 
 
 const DesktopNavbar = () => {
   // const { activeDiv } = useNavbar()
+  const router = useRouter()
 
   return (
     <div className="px-20 py-5 flex justify-between items-center">
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center cursor-pointer" onClick={() => router.push("/")} >
         <Image src={ShopbrazeLogo} alt="shopbraze_logo.svg" height={80} width={100} className="h-[47px] w-[43px]" />
         <p className="text-[#017356] text-2xl font-semibold leading-[29px]">ShopBraze</p>
       </div>
