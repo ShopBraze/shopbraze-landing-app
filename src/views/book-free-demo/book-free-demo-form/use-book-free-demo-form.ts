@@ -1,3 +1,5 @@
+import { fbq } from 'events/fb-pixel'
+import { sendMixPanelEvent } from 'lib/mixpanelClient'
 import { useState, useEffect } from 'react'
 import toast from 'react-hot-toast'
 
@@ -94,12 +96,22 @@ const useBookFreeDemoForm = () => {
       });
 
       if (response.ok) {
+        sendMixPanelEvent("Leads Basic Details Submitted")
+        fbq('track', 'CompleteRegistration', {
+          content_name: 'Shopbraze Free Demo',
+          status: 'success',
+          currency: 'INR',
+          value: 0
+        });
         setCurrentStep(2);
+
       }
       else {
         toast.error('Failed to submit form')
+        sendMixPanelEvent("Leads Basic Details Submission Failed")
       }
     } catch (error) {
+      sendMixPanelEvent("Leads Basic Details Submission Failed")
       toast.error('Failed to submit form')
     } finally {
       setIsLoading(false)
@@ -121,12 +133,21 @@ const useBookFreeDemoForm = () => {
     }).then((res) => {
       if (res.ok) {
         setCurrentStep(3)
+        sendMixPanelEvent("Leads OTP Verified")
+        fbq('track', 'Lead', {
+          lead_type: 'demo_request',
+          content_name: 'Shopbraze Free Demo',
+          currency: 'INR',
+          value: 0
+        });
         toast.success('OTP verified successfully')
       } else {
+        sendMixPanelEvent("Leads OTP Verification Failed")
         toast.error('Invalid OTP')
       }
     })
       .catch((err) => {
+        sendMixPanelEvent("Leads OTP Verification Failed")
         toast.error('Invalid OTP')
         console.log(err)
       })
