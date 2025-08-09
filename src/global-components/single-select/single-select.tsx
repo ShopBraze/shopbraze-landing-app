@@ -14,6 +14,7 @@ interface SingleSelectProps {
   required?: boolean
   className?: string
   disabled?: boolean
+  position?: 'top' | 'bottom' | 'auto'
 }
 
 const SingleSelect: React.FC<SingleSelectProps> = ({
@@ -24,9 +25,11 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
   label,
   required = false,
   className = '',
-  disabled = false
+  disabled = false,
+  position = 'bottom'
 }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const [dropdownPosition, setDropdownPosition] = useState<'top' | 'bottom'>('bottom')
   const selectRef = useRef<HTMLDivElement>(null)
 
   // Close dropdown when clicking outside
@@ -42,8 +45,31 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
     }
   }, [])
 
+  // Calculate dropdown position when opening
+  const calculatePosition = () => {
+    if (position === 'auto' && selectRef.current) {
+      const rect = selectRef.current.getBoundingClientRect()
+      const viewportHeight = window.innerHeight
+      const spaceBelow = viewportHeight - rect.bottom
+      const spaceAbove = rect.top
+      const dropdownHeight = Math.min(options.length * 40 + 16, 240) // Approximate dropdown height
+
+      // If there's not enough space below and more space above, show above
+      if (spaceBelow < dropdownHeight && spaceAbove > spaceBelow) {
+        setDropdownPosition('top')
+      } else {
+        setDropdownPosition('bottom')
+      }
+    } else {
+      setDropdownPosition(position === 'top' ? 'top' : 'bottom')
+    }
+  }
+
   const toggleDropdown = () => {
     if (!disabled) {
+      if (!isOpen) {
+        calculatePosition()
+      }
       setIsOpen(!isOpen)
     }
   }
@@ -58,7 +84,7 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
   return (
     <div className={`space-y-1.5 ${className}`}>
       {label && (
-        <p className="text-xs font-medium md:text-sm md:font-normal">
+        <p className="text-[13px] font-medium md:text-sm md:font-normal">
           {label} {required && <span className="text-red-300">*</span>}
         </p>
       )}
@@ -86,7 +112,12 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
         </button>
 
         {isOpen && (
-          <div className="absolute z-10 w-full mt-1 bg-[#fff] border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto">
+          <div
+            className={`absolute z-10 w-full bg-[#fff] border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto ${dropdownPosition === 'top'
+              ? 'bottom-full mb-1'
+              : 'top-full mt-1'
+              }`}
+          >
             <div className="py-1">
               {options.map((option) => (
                 <button

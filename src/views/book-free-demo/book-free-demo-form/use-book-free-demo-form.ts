@@ -27,6 +27,33 @@ const useBookFreeDemoForm = () => {
     product_category: ''
   })
 
+  // Number of orders options
+  const number_of_orders_options = [
+    { value: '0', label: '0' },
+    { value: '1-20', label: '1-20' },
+    { value: '20-100', label: '20-100' },
+    { value: '100+', label: '100+' }
+  ]
+
+  // Product category options
+  const productCategoryOptions = [
+    { value: 'Apparel', label: 'Apparel' },
+    { value: 'Home Decor/Furnishing/Kitchen', label: 'Home Decor/Furnishing/Kitchen' },
+    { value: 'Fashion accesssories', label: 'Fashion accesssories' },
+    { value: 'Health & Fitness', label: 'Health & Fitness' },
+    { value: 'FMCG/Consumer Goods', label: 'FMCG/Consumer Goods' },
+    { value: 'Beauty & Cosmetics', label: 'Beauty & Cosmetics' },
+    { value: 'Others', label: 'Others(e.g., Jewellery, Toys, etc.)' }
+  ]
+
+  // Marketplace options
+  const marketplaceOptions = [
+    { value: 'Amazon/Flipkart/Meesho/Other MarketPlace', label: 'Amazon/Flipkart/Meesho/Other MarketPlace' },
+    { value: 'Own Website', label: 'Own Website' },
+    { value: 'Both (Marketplace and Own Website)', label: 'Both (Marketplace and Own Website)' },
+    { value: 'None', label: 'None' }
+  ]
+
   // Validation effects
   useEffect(() => {
     const mobile = formData.mobileNumber.trim();
@@ -50,8 +77,8 @@ const useBookFreeDemoForm = () => {
 
     try {
       setIsLoading(true)
-      const response = await fetch(`https://dashboard-api-dev.shopbraze.in/api/sellers-enquiry`, {
-        // const response = await fetch(`http://localhost:8080/api/sellers-enquiry`, {
+      // const response = await fetch(`https://dashboard-api-dev.shopbraze.in/api/sellers-enquiry`, {
+      const response = await fetch(`http://localhost:8080/api/sellers-enquiry`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -81,8 +108,8 @@ const useBookFreeDemoForm = () => {
 
   const handleVerifyOtp = () => {
     setIsLoading(true)
-    fetch(`https://dashboard-api-dev.shopbraze.in/api/sellers-enquiry/verify-otp`, {
-      // fetch(`http://localhost:8080/api/sellers-enquiry/verify-otp`, {
+    // fetch(`https://dashboard-api-dev.shopbraze.in/api/sellers-enquiry/verify-otp`, {
+    fetch(`http://localhost:8080/api/sellers-enquiry/verify-otp`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -139,6 +166,9 @@ const useBookFreeDemoForm = () => {
     handleVerifyOtp,
     handleCurrentStep,
     isFormValid,
+    number_of_orders_options,
+    productCategoryOptions,
+    marketplaceOptions,
   }
 }
 

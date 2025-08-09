@@ -21,27 +21,11 @@ const BookFreeDemoForm = () => {
     formErrors,
     handleSubmit,
     handleVerifyOtp,
-    isFormValid
+    isFormValid,
+    number_of_orders_options,
+    productCategoryOptions,
+    marketplaceOptions,
   } = useBookFreeDemoForm()
-
-  // Product category options
-  const productCategoryOptions = [
-    { value: 'Apparel', label: 'Apparel' },
-    { value: 'Home Decor/Furnishing/Kitchen', label: 'Home Decor/Furnishing/Kitchen' },
-    { value: 'Fashion accesssories', label: 'Fashion accesssories' },
-    { value: 'Health & Fitness', label: 'Health & Fitness' },
-    { value: 'FMCG/Consumer Goods', label: 'FMCG/Consumer Goods' },
-    { value: 'Beauty & Cosmetics', label: 'Beauty & Cosmetics' },
-    { value: 'Others', label: 'Others(e.g., Jewellery, Toys, etc.)' }
-  ]
-
-  // Marketplace options
-  const marketplaceOptions = [
-    { value: 'Amazon/Flipkart/Meesho/Other MarketPlace', label: 'Amazon/Flipkart/Meesho/Other MarketPlace' },
-    { value: 'Own Website', label: 'Own Website' },
-    { value: 'Both (Marketplace and Own Website)', label: 'Both (Marketplace and Own Website)' },
-    { value: 'None', label: 'None' }
-  ]
 
   // Step 1: Basic Details Form
   if (currentStep === 1) {
@@ -60,7 +44,7 @@ const BookFreeDemoForm = () => {
 
             <form onSubmit={handleSubmit} className="p-3 md:p-6 space-y-3 md:space-y-5">
               <div className="space-y-1.5">
-                <p className="text-xs font-medium md:text-sm md:font-normal">Name <span className="text-red-300">*</span></p>
+                <p className="text-[13px] font-medium md:text-sm md:font-normal">Name <span className="text-red-300">*</span></p>
                 <input
                   type="text"
                   required
@@ -71,7 +55,7 @@ const BookFreeDemoForm = () => {
               </div>
 
               <div className="space-y-1.5">
-                <p className="text-xs font-medium md:text-sm md:font-normal">Mobile Number <span className="text-success-500">(Whatsapp)</span> <span className="text-red-300">*</span></p>
+                <p className="text-[13px] font-medium md:text-sm md:font-normal">Mobile Number <span className="text-success-500">(Whatsapp)</span> <span className="text-red-300">*</span></p>
                 <input
                   type="tel"
                   required
@@ -84,7 +68,7 @@ const BookFreeDemoForm = () => {
               </div>
 
               <div className="space-y-1.5">
-                <p className="text-xs font-medium md:text-sm md:font-normal">Email <span className="text-red-300">*</span></p>
+                <p className="text-[13px] font-medium md:text-sm md:font-normal">Email <span className="text-red-300">*</span></p>
                 <input
                   type="email"
                   required
@@ -112,16 +96,15 @@ const BookFreeDemoForm = () => {
                 className='py-2'
               />
 
-              <div className="space-y-1.5">
-                <p className="text-xs font-medium md:text-sm md:font-normal">How many online orders do you currently do per month? <span className="text-red-300">*</span></p>
-                <input
-                  required
-                  type="number"
-                  className="w-full text-sm text-gray-700 border border-gray-200 rounded-md px-3 py-1.5 md:py-2 outline-none focus:border-[#017356]"
-                  value={formData.number_of_orders}
-                  onChange={(e) => setFormData({ ...formData, number_of_orders: e.target.value })}
-                />
-              </div>
+              <SingleSelect
+                position='top'
+                options={number_of_orders_options}
+                value={formData.number_of_orders}
+                onChange={(value) => setFormData({ ...formData, number_of_orders: value })}
+                label="How many online orders do you currently do per month?"
+                required
+                className='py-2'
+              />
 
               {/* Get Started Button - Inside form */}
               <div className="pt-4">

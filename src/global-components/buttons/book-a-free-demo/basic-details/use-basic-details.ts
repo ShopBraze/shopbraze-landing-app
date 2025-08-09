@@ -33,6 +33,14 @@ const useBasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDeta
     { value: 'None', label: 'None' }
   ]
 
+  // Number of orders options
+  const number_of_orders_options = [
+    { value: '0', label: '0' },
+    { value: '1-20', label: '1-20' },
+    { value: '20-100', label: '20-100' },
+    { value: '100+', label: '100+' }
+  ]
+
   useEffect(() => {
     const mobile = formData.mobileNumber.trim();
 
@@ -55,8 +63,7 @@ const useBasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDeta
 
     try {
       setIsLoading(true)
-      const response = await fetch(`https://dashboard-api-dev.shopbraze.in/api/sellers-enquiry`, {
-        // const response = await fetch(`http://localhost:8080/api/sellers-enquiry`, {
+      const response = await fetch(`http://localhost:8080/api/sellers-enquiry`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -112,6 +119,7 @@ const useBasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDeta
     isLoading,
     productCategoryOptions,
     marketplaceOptions,
+    number_of_orders_options,
     isFormValid,
   }
 }

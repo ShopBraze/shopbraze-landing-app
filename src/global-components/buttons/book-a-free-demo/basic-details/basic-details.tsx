@@ -14,12 +14,12 @@ type BasicDetailsProps = {
 }
 
 const BasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDetailsProps) => {
-  const { formErrors, handleSubmit, isLoading, productCategoryOptions, marketplaceOptions, isFormValid } = useBasicDetails({ formData, setFormData, handleCurrentStep })
+  const { formErrors, handleSubmit, isLoading, productCategoryOptions, marketplaceOptions, number_of_orders_options, isFormValid } = useBasicDetails({ formData, setFormData, handleCurrentStep })
   return (
     <Modal
       isOpen={true}
     >
-      <form onSubmit={handleSubmit} className='rounded-lg w-[90vw] md:w-[540px]'>
+      <form onSubmit={handleSubmit} className='rounded-lg w-[95vw] md:w-[540px]'>
         <div className=" md:space-y-[2px] p-3 md:px-5 md:py-4 border-b border-gray-200">
           <div className="flex justify-between items-center">
             <h2 className='text-lg md:text-[24px] font-semibold leading-[28px] md:leading-[32px] text-[#000]'>Book a Free Demo</h2>
@@ -34,7 +34,7 @@ const BasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDetails
 
         <div className="p-3 md:p-5 pb-10 space-y-4 max-h-[55vh] md:max-h-[65vh] overflow-y-auto scrollbar-hide">
           <div className="space-y-1.5">
-            <p className="text-xs md:text-sm font-medium">Name <span className="text-red-300">*</span></p>
+            <p className="text-[13px] md:text-sm font-medium">Name <span className="text-red-300">*</span></p>
             <input
               type="text"
               required
@@ -44,7 +44,7 @@ const BasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDetails
             />
           </div>
           <div className="space-y-1.5">
-            <p className="text-xs md:text-sm ">Mobile Number <span className="text-success-500">(Whatsapp)</span> <span className="text-red-300">*</span></p>
+            <p className="text-[13px] md:text-sm ">Mobile Number <span className="text-success-500">(Whatsapp)</span> <span className="text-red-300">*</span></p>
             <input
               type="tel"
               required
@@ -56,7 +56,7 @@ const BasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDetails
             {formErrors?.mobileNumber && <p className="text-xs text-red-300">{formErrors?.mobileNumber}</p>}
           </div>
           <div className="space-y-1.5">
-            <p className="text-xs md:text-sm ">Email <span className="text-red-300">*</span></p>
+            <p className="text-[13px] md:text-sm ">Email <span className="text-red-300">*</span></p>
             <input
               type="email"
               required
@@ -76,6 +76,7 @@ const BasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDetails
           </div>
           <div className="space-y-3">
             <SingleSelect
+              position='top'
               options={marketplaceOptions}
               value={formData.marketPlace}
               onChange={(value) => setFormData({ ...formData, marketPlace: value })}
@@ -83,14 +84,14 @@ const BasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDetails
               required
             />
           </div>
-          <div className="space-y-1.5">
-            <p className="text-xs md:text-sm">How many online orders do you currently do per month? <span className="text-red-300">*</span></p>
-            <input
-              type="number"
-              required
-              className="w-full text-sm  border border-gray-200 rounded-md px-2 py-1.5 outline-none"
+          <div className="space-y-3">
+            <SingleSelect
+              position='top'
+              options={number_of_orders_options}
               value={formData.number_of_orders}
-              onChange={(e) => setFormData({ ...formData, number_of_orders: e.target.value })}
+              onChange={(value) => setFormData({ ...formData, number_of_orders: value })}
+              label="How many online orders do you currently do per month?"
+              required
             />
           </div>
         </div>
