@@ -77,8 +77,8 @@ const useBookFreeDemoForm = () => {
 
     try {
       setIsLoading(true)
-      // const response = await fetch(`https://dashboard-api-dev.shopbraze.in/api/sellers-enquiry`, {
-      const response = await fetch(`http://localhost:8080/api/sellers-enquiry`, {
+      const response = await fetch(`https://dashboard-api-dev.shopbraze.in/api/sellers-enquiry`, {
+        // const response = await fetch(`http://localhost:8080/api/sellers-enquiry`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -108,8 +108,8 @@ const useBookFreeDemoForm = () => {
 
   const handleVerifyOtp = () => {
     setIsLoading(true)
-    // fetch(`https://dashboard-api-dev.shopbraze.in/api/sellers-enquiry/verify-otp`, {
-    fetch(`http://localhost:8080/api/sellers-enquiry/verify-otp`, {
+    fetch(`https://dashboard-api-dev.shopbraze.in/api/sellers-enquiry/verify-otp`, {
+      // fetch(`http://localhost:8080/api/sellers-enquiry/verify-otp`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
