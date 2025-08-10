@@ -16,7 +16,7 @@ const useBasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDeta
 
   // Product category options
   const productCategoryOptions = [
-    { value: 'Apparel', label: 'Apparel' },
+    { value: 'Apparel/Clothing', label: 'Apparel/Clothing' },
     { value: 'Home Decor/Furnishing/Kitchen', label: 'Home Decor/Furnishing/Kitchen' },
     { value: 'Fashion accesssories', label: 'Fashion accesssories' },
     { value: 'Health & Fitness', label: 'Health & Fitness' },
