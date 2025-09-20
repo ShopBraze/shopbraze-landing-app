@@ -63,7 +63,7 @@ const useBasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDeta
 
     try {
       setIsLoading(true)
-      const response = await fetch(`https://dashboard-api-dev.shopbraze.in/api/sellers-enquiry`, {
+      const response = await fetch(`https://dashboard-api.shopbraze.in/api/sellers-enquiry`, {
         // const response = await fetch(`http://localhost:8080/api/sellers-enquiry`, {
         method: 'POST',
         headers: {

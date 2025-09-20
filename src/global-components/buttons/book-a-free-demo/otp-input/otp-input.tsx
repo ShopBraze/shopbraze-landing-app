@@ -18,7 +18,7 @@ const OtpInputContainer = ({ handleCurrentStep, mobileNumber }: OtpInputProps) =
 
   const handleVerifyOtp = () => {
     setIsLoading(true)
-    fetch(`https://dashboard-api-dev.shopbraze.in/api/sellers-enquiry/verify-otp`, {
+    fetch(`https://dashboard-api.shopbraze.in/api/sellers-enquiry/verify-otp`, {
       // fetch(`http://localhost:8080/api/sellers-enquiry/verify-otp`, {
       method: 'POST',
       headers: {
