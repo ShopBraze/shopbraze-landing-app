@@ -20,6 +20,28 @@ export default {
   canonical: "https://shopbraze.com",
 };
 
+export const BookAFreeDemoSEO = {
+  title: "Book a Free Demo - ShopBraze",
+  description:
+    "Book a free demo with ShopBraze to discover how to grow your e-commerce business.",
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://shopbraze.com/book-free-demo",
+    site_name: "ShopBraze",
+    images: [
+      {
+        url: "https://shopbraze-bucket.s3.ap-south-1.amazonaws.com/shopbraze-desktop.png",
+        width: 800,
+        height: 600,
+        alt: "Enhance your profitability",
+        // type: "image/png",
+      },
+    ],
+  },
+  canonical: "https://shopbraze.com/book-free-demo",
+};
+
 // For dynaimic pages
 
 // const SEO = {
