@@ -7,6 +7,7 @@ import OtpInput from 'react-otp-input'
 import useBookFreeDemoForm from './use-book-free-demo-form'
 import { useRouter } from 'next/navigation'
 import SingleSelect from 'global-components/single-select/single-select'
+import WhatsappIcon from 'assets/icons/whatsapp-icon.svg'
 
 const BookFreeDemoForm = () => {
   const router = useRouter()
@@ -55,11 +56,18 @@ const BookFreeDemoForm = () => {
               </div>
 
               <div className="space-y-1.5">
-                <p className="text-[13px] font-medium md:text-sm md:font-normal">Mobile Number <span className="text-success-500">(Whatsapp)</span> <span className="text-red-300">*</span></p>
+                <div className="flex gap-2 items-center text-[13px] font-medium md:text-sm md:font-normal text-success-800">
+                  <span>
+                    <Image src={WhatsappIcon} alt="whatsapp-icon" width={16} height={16} />
+                  </span>
+                  Whatsapp Number
+                  <span className="text-red-300">*</span>
+                </div>
                 <input
                   type="tel"
                   required
                   maxLength={10}
+                  placeholder='Enter your Whatsapp Number'
                   className={`w-full text-sm border text-gray-700 border-gray-200 rounded-md px-3 py-1.5 md:py-2 outline-none focus:border-[#017356] ${formErrors?.mobileNumber ? 'border-red-300' : ''}`}
                   value={formData.mobileNumber}
                   onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
@@ -120,10 +128,10 @@ const BookFreeDemoForm = () => {
               </div>
             </form>
           </div>
-        </div>
+        </div >
 
         {/* Remove the old button container since button is now inside form */}
-      </div>
+      </div >
     )
   }
 

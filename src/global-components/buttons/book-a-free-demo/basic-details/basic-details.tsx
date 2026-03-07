@@ -4,6 +4,7 @@ import useBasicDetails from './use-basic-details'
 import Button from 'common-components/button/button'
 import Modal from 'common-components/modal/modal'
 import SingleSelect from 'global-components/single-select/single-select'
+import WhatsappIcon from 'assets/icons/whatsapp-icon.svg'
 
 
 
@@ -44,11 +45,12 @@ const BasicDetails = ({ formData, setFormData, handleCurrentStep }: BasicDetails
             />
           </div>
           <div className="space-y-1.5">
-            <p className="text-[13px] md:text-sm ">Mobile Number <span className="text-success-500">(Whatsapp)</span> <span className="text-red-300">*</span></p>
+            <div className="flex gap-2 items-center text-[13px] font-medium md:text-sm md:font-normal text-success-800"><span><Image src={WhatsappIcon} alt="whatsapp-icon" width={16} height={16} /></span> Whatsapp Number<span className="text-red-300">*</span></div>
             <input
               type="tel"
               required
               maxLength={10}
+              placeholder='Enter your Whatsapp Number'
               className={`w-full text-sm border border-gray-200 rounded-md px-2 py-1.5 outline-none ${formErrors?.mobileNumber ? 'border-red-300' : ''}`}
               value={formData.mobileNumber}
               onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
